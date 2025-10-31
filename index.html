@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>StarlitCanvas — Where Moments Inspire Art</title>
 
-  
+
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Roboto:wght@300;500;900&display=swap" rel="stylesheet">
 
-  
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
 
-  
+
   <link rel="stylesheet" href="style.css">
   <meta name="description" content="Share the view from where you are. Artists turn your moments into art. First to share gets first dibs to buy." />
 </head>
 
 <body>
- 
-  <nav class="navbar">
+
+  <nav class="navbar header-position">
     <div class="container nav-inner">
       <a class="brand" href="#top"><span class="brand-mark">★</span> StarlitCanvas</a>
       <ul class="list-inline nav-links">
@@ -36,7 +37,7 @@
       <h1>Turn real moments into <span class="accent">original art</span></h1>
       <p>Share a photo of where you are. Artists use it as inspiration. If it becomes a piece, you get royalties and <strong>first dibs</strong> to buy.</p>
       <div class="cta">
-        <a class="btn btn-blue" href="#submit"><i class="fa-solid fa-paper-plane"></i> Submit a photo</a>
+        <a class="btn btn-light" href="#submit"><i class="fa-solid fa-paper-plane"></i> Submit a photo</a>
         <a class="btn btn-light" href="#feed">Explore the feed</a>
       </div>
     </div>
@@ -49,32 +50,32 @@
       <div class="cards">
         <article class="card">
           <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop" alt="Share a photo">
-          <h3>Share your moment</h3>
+          <h3 class="how-it-works-titles">Share your moment</h3>
           <p>Upload a photo and a short story (time, place, vibe). Your submission enters the <em>Inspiration Feed</em> </p>
         </article>
 
         <article class="card">
           <img src="https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?q=80&w=1200&auto=format&fit=crop" alt="Artists browse">
-          <h3>Artists get inspired</h3>
+          <h3 class="how-it-works-titles">Artists get inspired</h3>
           <p>Artists browse the feed and create sketches or finished works based on what resonates</p>
         </article>
 
         <article class="card">
-          <img src="https://images.unsplash.com/photo-1477764860848-48c0f7bbe0f4?q=80&w=1200&auto=format&fit=crop" alt="First dibs">
-          <h3>First dibs to buy</h3>
+          <img src="https://images.unsplash.com/photo-1486911278844-a81c5267e227?q=80&w=1200&auto=format&fit=crop" alt="First dibs">
+          <h3 class="how-it-works-titles">First dibs to buy</h3>
           <p>If your photo sparked the piece, you receive royalties and a <strong>24-hour first-look</strong> link to purchase</p>
         </article>
       </div>
     </div>
   </section>
 
- 
+
   <section id="feed" class="section section-alt">
     <div class="container">
       <h2 class="center">Inspiration Feed</h2>
 
       <div class="cards">
- 
+
         <article class="card">
           <div class="media ratio-16x9">
             <img src="https://images.unsplash.com/photo-1505764706515-aa95265c5abc?q=80&w=1400&auto=format&fit=crop" alt="Evening skyline">
@@ -178,13 +179,9 @@
       <h2 class="center">Submit your photo</h2>
       <p class="center">Share the moment and your story. We’ll notify you if an artist picks it ✨</p>
 
-     
+
       <div class="typeform-wrap">
-        <div data-tf-widget="YOUR_TYPEFORM_ID"
-             data-tf-medium="snippet"
-             data-tf-opacity="100"
-             data-tf-iframe-props="title=StarlitCanvas Submission"
-             data-tf-auto-focus>
+        <div data-tf-widget="YOUR_TYPEFORM_ID" data-tf-medium="snippet" data-tf-opacity="100" data-tf-iframe-props="title=StarlitCanvas Submission" data-tf-auto-focus>
         </div>
         <script src="https://embed.typeform.com/next/embed.js"></script>
       </div>
@@ -232,27 +229,33 @@
         <p>Moments → Inspiration → Art</p>
       </div>
       <ul class="list-inline social">
-        <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-        <li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
-        <li><a href="#"><i class="fa-brands fa-tiktok"></i></a></li>
-        <li><a href="#"><i class="fa-brands fa-discord"></i></a></li>
+        <li><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></li>
+        <li><a href="https://x.com/"><i class="fa-brands fa-x-twitter"></i></a></li>
+        <li><a href="https://www.tiktok.com"><i class="fa-brands fa-tiktok"></i></a></li>
+        <li><a href="https://discord.com/"><i class="fa-brands fa-discord"></i></a></li>
       </ul>
     </div>
   </footer>
 
- 
+
   <script>
-    const form = document.getElementById('waitlist-form');
-    const success = document.getElementById('waitlist-success');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(form).entries());
-      const list = JSON.parse(localStorage.getItem('starlit_waitlist') || '[]');
-      list.push({ ...data, createdAt: new Date().toISOString() });
-      localStorage.setItem('starlit_waitlist', JSON.stringify(list));
-      form.reset();
-      success.hidden = false;
-    });
+    function wrapper() {
+      const form = document.getElementById('waitlist-form');
+      const success = document.getElementById('waitlist-success');
+      if (!form) return; // nothing to do
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(form).entries());
+        const list = JSON.parse(localStorage.getItem('starlit_waitlist') || '[]');
+        list.push({ ...data, createdAt: new Date().toISOString() });
+        localStorage.setItem('starlit_waitlist', JSON.stringify(list));
+        form.reset();
+        if (success) success.hidden = false;
+      });
+    }
+    wrapper();
   </script>
 </body>
+
 </html>
